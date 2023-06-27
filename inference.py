@@ -5,7 +5,13 @@ from PIL import Image
 import requests
 
 # load model
-model = vit_base()
+model = vit_base(
+    img_size=518,
+    patch_size=14,
+    init_values=1.0,
+    ffn_layer="mlp",
+    block_chunks=0,
+)
 # equip the model with the pre-trained weights
 state_dict = torch.hub.load_state_dict_from_url('https://dl.fbaipublicfiles.com/dinov2/dinov2_vitb14/dinov2_vitb14_pretrain.pth',
                                                 map_location="cpu")
